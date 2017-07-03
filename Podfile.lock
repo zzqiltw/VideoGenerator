@@ -1,0 +1,18 @@
+PODS:
+  - Masonry (1.0.2)
+  - pop (1.0.10)
+  - ZLPhotoBrowser (2.2.5)
+
+DEPENDENCIES:
+  - Masonry (~> 1.0)
+  - pop (~> 1.0.9)
+  - ZLPhotoBrowser (~> 2.2.5)
+
+SPEC CHECKSUMS:
+  Masonry: 7c429b56da9d4ee0bbb3ed77a5ea710d6a5df39e
+  pop: 82ca6b068ce9278fd350fd9dd09482a0ce9492e6
+  ZLPhotoBrowser: e3b90e4ab9ec5d19ba2ed2ef7c9ded654e1b1c8e
+
+PODFILE CHECKSUM: bc7057e991ef33fb82896bee4de9727c45527605
+
+COCOAPODS: 1.1.1

@@ -15,6 +15,7 @@
 		999D9C6C1F0A40A300C71699 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 999D9C6A1F0A40A300C71699 /* LaunchScreen.storyboard */; };
 		999D9C771F0A40A300C71699 /* VideoGeneratorTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 999D9C761F0A40A300C71699 /* VideoGeneratorTests.m */; };
 		999D9C821F0A40A300C71699 /* VideoGeneratorUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 999D9C811F0A40A300C71699 /* VideoGeneratorUITests.m */; };
+		F32508DEAE4B6C1F6C75A063 /* libPods-VideoGenerator.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 287E25DBB0E497115F8BFF3A /* libPods-VideoGenerator.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -35,6 +36,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		287E25DBB0E497115F8BFF3A /* libPods-VideoGenerator.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-VideoGenerator.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		7748EBB20256898E3038E4C8 /* Pods-VideoGenerator.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VideoGenerator.debug.xcconfig"; path = "Pods/Target Support Files/Pods-VideoGenerator/Pods-VideoGenerator.debug.xcconfig"; sourceTree = "<group>"; };
 		999D9C591F0A40A200C71699 /* VideoGenerator.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = VideoGenerator.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		999D9C5D1F0A40A200C71699 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		999D9C5F1F0A40A200C71699 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -51,6 +54,7 @@
 		999D9C7D1F0A40A300C71699 /* VideoGeneratorUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = VideoGeneratorUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		999D9C811F0A40A300C71699 /* VideoGeneratorUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VideoGeneratorUITests.m; sourceTree = "<group>"; };
 		999D9C831F0A40A300C71699 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D9CDEF6AB2E01EC11724BF05 /* Pods-VideoGenerator.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VideoGenerator.release.xcconfig"; path = "Pods/Target Support Files/Pods-VideoGenerator/Pods-VideoGenerator.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,6 +62,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F32508DEAE4B6C1F6C75A063 /* libPods-VideoGenerator.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -78,6 +83,23 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1B090BBF55D3E9D36DE9F6ED /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				7748EBB20256898E3038E4C8 /* Pods-VideoGenerator.debug.xcconfig */,
+				D9CDEF6AB2E01EC11724BF05 /* Pods-VideoGenerator.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		5B6FD7B2B3F872F13C7C408D /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				287E25DBB0E497115F8BFF3A /* libPods-VideoGenerator.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		999D9C501F0A40A200C71699 = {
 			isa = PBXGroup;
 			children = (
@@ -85,6 +107,8 @@
 				999D9C751F0A40A300C71699 /* VideoGeneratorTests */,
 				999D9C801F0A40A300C71699 /* VideoGeneratorUITests */,
 				999D9C5A1F0A40A200C71699 /* Products */,
+				1B090BBF55D3E9D36DE9F6ED /* Pods */,
+				5B6FD7B2B3F872F13C7C408D /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -147,9 +171,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 999D9C861F0A40A300C71699 /* Build configuration list for PBXNativeTarget "VideoGenerator" */;
 			buildPhases = (
+				3F1DFB667BAAE3ACC6EF4BEE /* [CP] Check Pods Manifest.lock */,
 				999D9C551F0A40A200C71699 /* Sources */,
 				999D9C561F0A40A200C71699 /* Frameworks */,
 				999D9C571F0A40A200C71699 /* Resources */,
+				DA770F245442FE883482ECF3 /* [CP] Embed Pods Frameworks */,
+				2E22DE1E75EE8C78C142D149 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -267,6 +294,54 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		2E22DE1E75EE8C78C142D149 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-VideoGenerator/Pods-VideoGenerator-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		3F1DFB667BAAE3ACC6EF4BEE /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		DA770F245442FE883482ECF3 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-VideoGenerator/Pods-VideoGenerator-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		999D9C551F0A40A200C71699 /* Sources */ = {
@@ -424,6 +499,7 @@
 		};
 		999D9C871F0A40A300C71699 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 7748EBB20256898E3038E4C8 /* Pods-VideoGenerator.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = VideoGenerator/Info.plist;
@@ -435,6 +511,7 @@
 		};
 		999D9C881F0A40A300C71699 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = D9CDEF6AB2E01EC11724BF05 /* Pods-VideoGenerator.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = VideoGenerator/Info.plist;

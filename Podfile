@@ -3,11 +3,11 @@ source 'https://github.com/CocoaPods/Specs.git'
 
 
 platform :ios, '8.0'
-project 'Left.xcodeproj'
 
 #use_frameworks!
 
-target 'LeftWidget' do
+target 'VideoGenerator' do
     pod 'pop', '~> 1.0.9'
     pod 'Masonry', '~> 1.0'
+    pod 'ZLPhotoBrowser', '~> 2.2.5'
 end
