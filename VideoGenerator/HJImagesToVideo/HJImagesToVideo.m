@@ -13,151 +13,159 @@ CGSize const DefaultFrameSize                             = (CGSize){480, 320};
 
 NSInteger const DefaultFrameRate                          = 1;
 NSInteger const TransitionFrameCount                      = 50;
-NSInteger const FramesToWaitBeforeTransition              = 40;
+//NSInteger const FramesToWaitBeforeTransition              = 40;
+NSInteger const FramesToWaitBeforeTransition              = 0;
+
 
 BOOL const DefaultTransitionShouldAnimate = YES;
 
+@interface HJImagesToVideo()
+
+@property (nonatomic, strong) NSArray<ZQPhotoDurationModel *> *photoModels;
+
+@end
+
 @implementation HJImagesToVideo
 
-+ (void)videoFromImages:(NSArray<UIImage *> *)images
+//+ (void)videoFromImages:(NSArray<UIImage *> *)images
+//                 toPath:(NSString *)path
+//      withCallbackBlock:(SuccessBlock)callbackBlock
+//{
+//    [HJImagesToVideo videoFromImages:images
+//                              toPath:path
+//                            withSize:DefaultFrameSize
+//                             withFPS:DefaultFrameRate
+//                  animateTransitions:DefaultTransitionShouldAnimate
+//                   withCallbackBlock:callbackBlock];
+//}
+//
+//+ (void)videoFromImages:(NSArray<UIImage *> *)images
+//                 toPath:(NSString *)path
+//     animateTransitions:(BOOL)animate
+//      withCallbackBlock:(SuccessBlock)callbackBlock
+//{
+//    [HJImagesToVideo videoFromImages:images
+//                              toPath:path
+//                            withSize:DefaultFrameSize
+//                             withFPS:DefaultFrameRate
+//                  animateTransitions:animate
+//                   withCallbackBlock:callbackBlock];
+//}
+//
+//+ (void)videoFromImages:(NSArray<UIImage *> *)images
+//                 toPath:(NSString *)path
+//                withFPS:(int)fps
+//     animateTransitions:(BOOL)animate
+//      withCallbackBlock:(SuccessBlock)callbackBlock
+//{
+//    [HJImagesToVideo videoFromImages:images
+//                              toPath:path
+//                            withSize:DefaultFrameSize
+//                             withFPS:fps
+//                  animateTransitions:animate
+//                   withCallbackBlock:callbackBlock];
+//}
+//
+//+ (void)videoFromImages:(NSArray<UIImage *> *)images
+//                 toPath:(NSString *)path
+//               withSize:(CGSize)size
+//     animateTransitions:(BOOL)animate
+//      withCallbackBlock:(SuccessBlock)callbackBlock
+//{
+//    [HJImagesToVideo videoFromImages:images
+//                              toPath:path
+//                            withSize:size
+//                             withFPS:DefaultFrameRate
+//                  animateTransitions:animate
+//                   withCallbackBlock:callbackBlock];
+//}
+//
+- (void)videoFromImages:(NSArray<ZQPhotoDurationModel *> *)images
                  toPath:(NSString *)path
-      withCallbackBlock:(SuccessBlock)callbackBlock
-{
-    [HJImagesToVideo videoFromImages:images
-                              toPath:path
-                            withSize:DefaultFrameSize
-                             withFPS:DefaultFrameRate
-                  animateTransitions:DefaultTransitionShouldAnimate
-                   withCallbackBlock:callbackBlock];
-}
-
-+ (void)videoFromImages:(NSArray<UIImage *> *)images
-                 toPath:(NSString *)path
-     animateTransitions:(BOOL)animate
-      withCallbackBlock:(SuccessBlock)callbackBlock
-{
-    [HJImagesToVideo videoFromImages:images
-                              toPath:path
-                            withSize:DefaultFrameSize
-                             withFPS:DefaultFrameRate
-                  animateTransitions:animate
-                   withCallbackBlock:callbackBlock];
-}
-
-+ (void)videoFromImages:(NSArray<UIImage *> *)images
-                 toPath:(NSString *)path
+               withSize:(CGSize)size
                 withFPS:(int)fps
      animateTransitions:(BOOL)animate
       withCallbackBlock:(SuccessBlock)callbackBlock
 {
-    [HJImagesToVideo videoFromImages:images
-                              toPath:path
-                            withSize:DefaultFrameSize
-                             withFPS:fps
-                  animateTransitions:animate
-                   withCallbackBlock:callbackBlock];
+    [self writeImageAsMovie:images
+                     toPath:path
+                       size:size
+                        fps:fps
+         animateTransitions:animate
+          withCallbackBlock:callbackBlock];
 }
+//
+//+ (void)saveVideoToPhotosWithImages:(NSArray<UIImage *> *)images
+//                  withCallbackBlock:(SuccessBlock)callbackBlock
+//{
+//    [HJImagesToVideo saveVideoToPhotosWithImages:images
+//                                        withSize:DefaultFrameSize
+//                              animateTransitions:DefaultTransitionShouldAnimate
+//                               withCallbackBlock:callbackBlock];
+//}
+//
+//+ (void)saveVideoToPhotosWithImages:(NSArray<UIImage *> *)images
+//                 animateTransitions:(BOOL)animate
+//                  withCallbackBlock:(SuccessBlock)callbackBlock
+//{
+//    [HJImagesToVideo saveVideoToPhotosWithImages:images
+//                                        withSize:DefaultFrameSize
+//                              animateTransitions:animate
+//                               withCallbackBlock:callbackBlock];
+//}
+//
+//+ (void)saveVideoToPhotosWithImages:(NSArray<UIImage *> *)images
+//                           withSize:(CGSize)size
+//                 animateTransitions:(BOOL)animate
+//                  withCallbackBlock:(SuccessBlock)callbackBlock
+//{
+//    [HJImagesToVideo saveVideoToPhotosWithImages:images
+//                                        withSize:size
+//                                         withFPS:DefaultFrameRate
+//                              animateTransitions:animate
+//                               withCallbackBlock:callbackBlock];
+//}
+//
+//+ (void)saveVideoToPhotosWithImages:(NSArray<UIImage *> *)images
+//                            withFPS:(int)fps
+//                 animateTransitions:(BOOL)animate
+//                  withCallbackBlock:(SuccessBlock)callbackBlock
+//{
+//    [HJImagesToVideo saveVideoToPhotosWithImages:images
+//                                        withSize:DefaultFrameSize
+//                                         withFPS:fps
+//                              animateTransitions:animate
+//                               withCallbackBlock:callbackBlock];
+//}
+//
+//+ (void)saveVideoToPhotosWithImages:(NSArray<UIImage *> *)images
+//                           withSize:(CGSize)size
+//                            withFPS:(int)fps
+//                 animateTransitions:(BOOL)animate
+//                  withCallbackBlock:(SuccessBlock)callbackBlock
+//{
+//    NSString *tempPath = [NSTemporaryDirectory() stringByAppendingPathComponent:
+//                          [NSString stringWithFormat:@"temp.mp4"]];
+//    [[NSFileManager defaultManager] removeItemAtPath:tempPath error:NULL];
+//    
+//    [HJImagesToVideo videoFromImages:images
+//                              toPath:tempPath
+//                            withSize:size
+//                             withFPS:fps
+//                  animateTransitions:animate
+//                   withCallbackBlock:^(BOOL success) {
+//                       
+//                       if (success) {
+//                           UISaveVideoAtPathToSavedPhotosAlbum(tempPath, self, nil, nil);
+//                       }
+//                       
+//                       if (callbackBlock) {
+//                           callbackBlock(success);
+//                       }
+//                   }];
+//}
 
-+ (void)videoFromImages:(NSArray<UIImage *> *)images
-                 toPath:(NSString *)path
-               withSize:(CGSize)size
-     animateTransitions:(BOOL)animate
-      withCallbackBlock:(SuccessBlock)callbackBlock
-{
-    [HJImagesToVideo videoFromImages:images
-                              toPath:path
-                            withSize:size
-                             withFPS:DefaultFrameRate
-                  animateTransitions:animate
-                   withCallbackBlock:callbackBlock];
-}
-
-+ (void)videoFromImages:(NSArray<UIImage *> *)images
-                 toPath:(NSString *)path
-               withSize:(CGSize)size
-                withFPS:(int)fps
-     animateTransitions:(BOOL)animate
-      withCallbackBlock:(SuccessBlock)callbackBlock
-{
-    [HJImagesToVideo writeImageAsMovie:images
-                                toPath:path
-                                  size:size
-                                   fps:fps
-                    animateTransitions:animate
-                     withCallbackBlock:callbackBlock];
-}
-
-+ (void)saveVideoToPhotosWithImages:(NSArray<UIImage *> *)images
-                  withCallbackBlock:(SuccessBlock)callbackBlock
-{
-    [HJImagesToVideo saveVideoToPhotosWithImages:images
-                                        withSize:DefaultFrameSize
-                              animateTransitions:DefaultTransitionShouldAnimate
-                               withCallbackBlock:callbackBlock];
-}
-
-+ (void)saveVideoToPhotosWithImages:(NSArray<UIImage *> *)images
-                 animateTransitions:(BOOL)animate
-                  withCallbackBlock:(SuccessBlock)callbackBlock
-{
-    [HJImagesToVideo saveVideoToPhotosWithImages:images
-                                        withSize:DefaultFrameSize
-                              animateTransitions:animate
-                               withCallbackBlock:callbackBlock];
-}
-
-+ (void)saveVideoToPhotosWithImages:(NSArray<UIImage *> *)images
-                           withSize:(CGSize)size
-                 animateTransitions:(BOOL)animate
-                  withCallbackBlock:(SuccessBlock)callbackBlock
-{
-    [HJImagesToVideo saveVideoToPhotosWithImages:images
-                                        withSize:size
-                                         withFPS:DefaultFrameRate
-                              animateTransitions:animate
-                               withCallbackBlock:callbackBlock];
-}
-
-+ (void)saveVideoToPhotosWithImages:(NSArray<UIImage *> *)images
-                            withFPS:(int)fps
-                 animateTransitions:(BOOL)animate
-                  withCallbackBlock:(SuccessBlock)callbackBlock
-{
-    [HJImagesToVideo saveVideoToPhotosWithImages:images
-                                        withSize:DefaultFrameSize
-                                         withFPS:fps
-                              animateTransitions:animate
-                               withCallbackBlock:callbackBlock];
-}
-
-+ (void)saveVideoToPhotosWithImages:(NSArray<UIImage *> *)images
-                           withSize:(CGSize)size
-                            withFPS:(int)fps
-                 animateTransitions:(BOOL)animate
-                  withCallbackBlock:(SuccessBlock)callbackBlock
-{
-    NSString *tempPath = [NSTemporaryDirectory() stringByAppendingPathComponent:
-                          [NSString stringWithFormat:@"temp.mp4"]];
-    [[NSFileManager defaultManager] removeItemAtPath:tempPath error:NULL];
-    
-    [HJImagesToVideo videoFromImages:images
-                              toPath:tempPath
-                            withSize:size
-                             withFPS:fps
-                  animateTransitions:animate
-                   withCallbackBlock:^(BOOL success) {
-                       
-                       if (success) {
-                           UISaveVideoAtPathToSavedPhotosAlbum(tempPath, self, nil, nil);
-                       }
-                       
-                       if (callbackBlock) {
-                           callbackBlock(success);
-                       }
-                   }];
-}
-
-+ (void)writeImageAsMovie:(NSArray<UIImage *> *)array
+- (void)writeImageAsMovie:(NSArray<ZQPhotoDurationModel *> *)array
                    toPath:(NSString*)path
                      size:(CGSize)size
                       fps:(int)fps
@@ -176,6 +184,8 @@ BOOL const DefaultTransitionShouldAnimate = YES;
         return;
     }
     NSParameterAssert(videoWriter);
+    
+    self.photoModels = array;
     
     NSDictionary *videoSettings = @{AVVideoCodecKey: AVVideoCodecH264,
                                     AVVideoWidthKey: [NSNumber numberWithInt:size.width],
@@ -202,15 +212,14 @@ BOOL const DefaultTransitionShouldAnimate = YES;
     int i = 0;
     while (1)
     {
-        
 		if(writerInput.readyForMoreMediaData){
-            
-			presentTime = CMTimeMake(i, fps);
+//            presentTime = CMTimeMake(value, fps);
+            presentTime = CMTimeMake([self videoDurationUntil:i], fps);
             
 			if (i >= [array count]) {
 				buffer = NULL;
 			} else {
-                UIImage *arrayIImage = array[i];
+                UIImage *arrayIImage = [array[i] image];
 
 				buffer = [HJImagesToVideo pixelBufferFromCGImage:arrayIImage.CGImage size:CGSizeMake(480, 320)];
 			}
@@ -239,9 +248,9 @@ BOOL const DefaultTransitionShouldAnimate = YES;
                     
                     //Apply fade frames
                     for (double j = 1; j < framesToFadeCount; j++) {
-                        UIImage *arrayIImage = array[i];
+                        UIImage *arrayIImage = [array[i] image];
                         buffer = [HJImagesToVideo crossFadeImage:[arrayIImage CGImage]
-                                                         toImage:[array[i + 1] CGImage]
+                                                         toImage:[[array[i + 1] image] CGImage]
                                                           atSize:CGSizeMake(480, 320)
                                                        withAlpha:j/framesToFadeCount];
                         
@@ -281,6 +290,17 @@ BOOL const DefaultTransitionShouldAnimate = YES;
             }
         }
     }
+}
+
+- (int)videoDurationUntil:(NSInteger)i
+{
+    int presentTime = 0;
+    for (NSInteger j = 0; j <= i - 1; ++j) {
+        ZQPhotoDurationModel *model = self.photoModels[j];
+        
+        presentTime += model.duration;
+    }
+    return presentTime;
 }
 
 + (CVPixelBufferRef)pixelBufferFromCGImage:(CGImageRef)image

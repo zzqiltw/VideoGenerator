@@ -11,6 +11,7 @@
 #import <CoreFoundation/CoreFoundation.h>
 #import <CoreMedia/CoreMedia.h>
 #import <AssetsLibrary/AssetsLibrary.h>
+#import "ZQPhotoDurationModel.h"
 
 /**
  *  Determines defaults for transitions
@@ -57,65 +58,65 @@ typedef void(^SuccessBlock)(BOOL success);
  *  @param animate       Yes results in crossfade between images
  *  @param callbackBlock Block to execute when video creation completes or fails
  */
-+ (void)videoFromImages:(NSArray *)images
+- (void)videoFromImages:(NSArray<ZQPhotoDurationModel *> *)images
                  toPath:(NSString *)path
                withSize:(CGSize)size
                 withFPS:(int)fps
      animateTransitions:(BOOL)animate
       withCallbackBlock:(SuccessBlock)callbackBlock;
 
-+ (void)videoFromImages:(NSArray *)images
-                 toPath:(NSString *)path
-                withFPS:(int)fps
-     animateTransitions:(BOOL)animate
-      withCallbackBlock:(SuccessBlock)callbackBlock;
+//+ (void)videoFromImages:(NSArray *)images
+//                 toPath:(NSString *)path
+//                withFPS:(int)fps
+//     animateTransitions:(BOOL)animate
+//      withCallbackBlock:(SuccessBlock)callbackBlock;
+//
+//+ (void)videoFromImages:(NSArray *)images
+//                 toPath:(NSString *)path
+//               withSize:(CGSize)size
+//     animateTransitions:(BOOL)animate
+//      withCallbackBlock:(SuccessBlock)callbackBlock;
+//
+//+ (void)videoFromImages:(NSArray *)images
+//                 toPath:(NSString *)path
+//     animateTransitions:(BOOL)animate
+//      withCallbackBlock:(SuccessBlock)callbackBlock;
+//
+//+ (void)videoFromImages:(NSArray *)images
+//                 toPath:(NSString *)path
+//      withCallbackBlock:(SuccessBlock)callbackBlock;
 
-+ (void)videoFromImages:(NSArray *)images
-                 toPath:(NSString *)path
-               withSize:(CGSize)size
-     animateTransitions:(BOOL)animate
-      withCallbackBlock:(SuccessBlock)callbackBlock;
-
-+ (void)videoFromImages:(NSArray *)images
-                 toPath:(NSString *)path
-     animateTransitions:(BOOL)animate
-      withCallbackBlock:(SuccessBlock)callbackBlock;
-
-+ (void)videoFromImages:(NSArray *)images
-                 toPath:(NSString *)path
-      withCallbackBlock:(SuccessBlock)callbackBlock;
-
-/**
- *  Convenience methods for saving to camera roll
- *
- *  @param images        Images to convert to video
- *  @param size          Frame size of image
- *  @param fps           FPS of video
- *  @param animate       Yes results in crossfade between images
- *  @param callbackBlock Block to execute when video creation completes or fails
- */
-+ (void)saveVideoToPhotosWithImages:(NSArray *)images
-                           withSize:(CGSize)size
-                            withFPS:(int)fps
-                 animateTransitions:(BOOL)animate
-                  withCallbackBlock:(SuccessBlock)callbackBlock;
-
-+ (void)saveVideoToPhotosWithImages:(NSArray *)images
-                          withSize:(CGSize)size
-                 animateTransitions:(BOOL)animate
-                  withCallbackBlock:(SuccessBlock)callbackBlock;
-
-+ (void)saveVideoToPhotosWithImages:(NSArray *)images
-                            withFPS:(int)fps
-                 animateTransitions:(BOOL)animate
-                  withCallbackBlock:(SuccessBlock)callbackBlock;
-
-+ (void)saveVideoToPhotosWithImages:(NSArray *)images
-                 animateTransitions:(BOOL)animate
-                  withCallbackBlock:(SuccessBlock)callbackBlock;
-
-+ (void)saveVideoToPhotosWithImages:(NSArray *)images
-                  withCallbackBlock:(SuccessBlock)callbackBlock;
+///**
+// *  Convenience methods for saving to camera roll
+// *
+// *  @param images        Images to convert to video
+// *  @param size          Frame size of image
+// *  @param fps           FPS of video
+// *  @param animate       Yes results in crossfade between images
+// *  @param callbackBlock Block to execute when video creation completes or fails
+// */
+//+ (void)saveVideoToPhotosWithImages:(NSArray *)images
+//                           withSize:(CGSize)size
+//                            withFPS:(int)fps
+//                 animateTransitions:(BOOL)animate
+//                  withCallbackBlock:(SuccessBlock)callbackBlock;
+//
+//+ (void)saveVideoToPhotosWithImages:(NSArray *)images
+//                          withSize:(CGSize)size
+//                 animateTransitions:(BOOL)animate
+//                  withCallbackBlock:(SuccessBlock)callbackBlock;
+//
+//+ (void)saveVideoToPhotosWithImages:(NSArray *)images
+//                            withFPS:(int)fps
+//                 animateTransitions:(BOOL)animate
+//                  withCallbackBlock:(SuccessBlock)callbackBlock;
+//
+//+ (void)saveVideoToPhotosWithImages:(NSArray *)images
+//                 animateTransitions:(BOOL)animate
+//                  withCallbackBlock:(SuccessBlock)callbackBlock;
+//
+//+ (void)saveVideoToPhotosWithImages:(NSArray *)images
+//                  withCallbackBlock:(SuccessBlock)callbackBlock;
 
 
 @end

@@ -9,8 +9,11 @@
 #import "ViewController.h"
 #import "ZLPhotoActionSheet.h"
 #import "HJImagesToVideo.h"
+#import "ZQPhotoDurationModel.h"
 
 @interface ViewController ()
+
+@property (nonatomic, strong) NSMutableArray<ZQPhotoDurationModel *> *photoModels;
 
 @end
 
@@ -18,7 +21,6 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view, typically from a nib.
 }
 
 
@@ -29,20 +31,37 @@
     actionSheet.sender = self;
     
     [actionSheet setSelectImageBlock:^(NSArray<UIImage *> * _Nonnull images, NSArray<PHAsset *> * _Nonnull assets, BOOL isOriginal) {
-        [self generateVideoWithImages:images];
+        
+        [images enumerateObjectsUsingBlock:^(UIImage * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+            
+            ZQPhotoDurationModel *model = [ZQPhotoDurationModel photoDurationModelWithImage:obj duration:idx+1 ];
+            if (model) {
+                [self.photoModels addObject:model];
+            }
+        }];
+
+        [self generateVideoWithImages:self.photoModels];
     }];
     
     [actionSheet showPhotoLibrary];
 }
 
-- (void)generateVideoWithImages:(NSArray<UIImage *> *)images
+- (void)generateVideoWithImages:(NSArray<ZQPhotoDurationModel *> *)imageModels
 {
     NSString *path = [NSHomeDirectory() stringByAppendingPathComponent:
                       [NSString stringWithFormat:@"Documents/temp.mp4"]];
     [[NSFileManager defaultManager] removeItemAtPath:path error:NULL];
-    [HJImagesToVideo videoFromImages:images toPath:path withCallbackBlock:^(BOOL success) {
+    [[HJImagesToVideo new] videoFromImages:imageModels toPath:path withSize:CGSizeMake(200, 200) withFPS:1 animateTransitions:NO withCallbackBlock:^(BOOL success) {
         
     }];
+}
+
+- (NSMutableArray<ZQPhotoDurationModel *> *)photoModels
+{
+    if (!_photoModels) {
+        _photoModels = [NSMutableArray array];
+    }
+    return _photoModels;
 }
 
 

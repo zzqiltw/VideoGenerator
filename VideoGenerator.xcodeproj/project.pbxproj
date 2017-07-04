@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		9980CEDF1F0B41D3002FE996 /* HJImagesToVideo.m in Sources */ = {isa = PBXBuildFile; fileRef = 9980CEDE1F0B41D3002FE996 /* HJImagesToVideo.m */; };
+		9980CEE21F0B4496002FE996 /* ZQPhotoCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9980CEE11F0B4496002FE996 /* ZQPhotoCollectionViewCell.m */; };
+		9980CEE51F0B84D0002FE996 /* ZQPhotoDurationModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 9980CEE41F0B84D0002FE996 /* ZQPhotoDurationModel.m */; };
 		999D9C5E1F0A40A200C71699 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 999D9C5D1F0A40A200C71699 /* main.m */; };
 		999D9C611F0A40A200C71699 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 999D9C601F0A40A200C71699 /* AppDelegate.m */; };
 		999D9C641F0A40A200C71699 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 999D9C631F0A40A200C71699 /* ViewController.m */; };
@@ -41,6 +43,10 @@
 		7748EBB20256898E3038E4C8 /* Pods-VideoGenerator.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VideoGenerator.debug.xcconfig"; path = "Pods/Target Support Files/Pods-VideoGenerator/Pods-VideoGenerator.debug.xcconfig"; sourceTree = "<group>"; };
 		9980CEDD1F0B41D3002FE996 /* HJImagesToVideo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HJImagesToVideo.h; sourceTree = "<group>"; };
 		9980CEDE1F0B41D3002FE996 /* HJImagesToVideo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HJImagesToVideo.m; sourceTree = "<group>"; };
+		9980CEE01F0B4496002FE996 /* ZQPhotoCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZQPhotoCollectionViewCell.h; sourceTree = "<group>"; };
+		9980CEE11F0B4496002FE996 /* ZQPhotoCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZQPhotoCollectionViewCell.m; sourceTree = "<group>"; };
+		9980CEE31F0B84D0002FE996 /* ZQPhotoDurationModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZQPhotoDurationModel.h; sourceTree = "<group>"; };
+		9980CEE41F0B84D0002FE996 /* ZQPhotoDurationModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZQPhotoDurationModel.m; sourceTree = "<group>"; };
 		999D9C591F0A40A200C71699 /* VideoGenerator.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = VideoGenerator.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		999D9C5D1F0A40A200C71699 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		999D9C5F1F0A40A200C71699 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -142,6 +148,10 @@
 				999D9C601F0A40A200C71699 /* AppDelegate.m */,
 				999D9C621F0A40A200C71699 /* ViewController.h */,
 				999D9C631F0A40A200C71699 /* ViewController.m */,
+				9980CEE31F0B84D0002FE996 /* ZQPhotoDurationModel.h */,
+				9980CEE41F0B84D0002FE996 /* ZQPhotoDurationModel.m */,
+				9980CEE01F0B4496002FE996 /* ZQPhotoCollectionViewCell.h */,
+				9980CEE11F0B4496002FE996 /* ZQPhotoCollectionViewCell.m */,
 				999D9C651F0A40A200C71699 /* Main.storyboard */,
 				999D9C681F0A40A200C71699 /* Assets.xcassets */,
 				999D9C6A1F0A40A300C71699 /* LaunchScreen.storyboard */,
@@ -361,6 +371,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9980CEE21F0B4496002FE996 /* ZQPhotoCollectionViewCell.m in Sources */,
+				9980CEE51F0B84D0002FE996 /* ZQPhotoDurationModel.m in Sources */,
 				999D9C641F0A40A200C71699 /* ViewController.m in Sources */,
 				999D9C611F0A40A200C71699 /* AppDelegate.m in Sources */,
 				9980CEDF1F0B41D3002FE996 /* HJImagesToVideo.m in Sources */,
