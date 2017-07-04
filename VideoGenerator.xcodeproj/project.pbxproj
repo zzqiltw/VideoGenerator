@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9980CEDF1F0B41D3002FE996 /* HJImagesToVideo.m in Sources */ = {isa = PBXBuildFile; fileRef = 9980CEDE1F0B41D3002FE996 /* HJImagesToVideo.m */; };
 		999D9C5E1F0A40A200C71699 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 999D9C5D1F0A40A200C71699 /* main.m */; };
 		999D9C611F0A40A200C71699 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 999D9C601F0A40A200C71699 /* AppDelegate.m */; };
 		999D9C641F0A40A200C71699 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 999D9C631F0A40A200C71699 /* ViewController.m */; };
@@ -38,6 +39,8 @@
 /* Begin PBXFileReference section */
 		287E25DBB0E497115F8BFF3A /* libPods-VideoGenerator.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-VideoGenerator.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		7748EBB20256898E3038E4C8 /* Pods-VideoGenerator.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VideoGenerator.debug.xcconfig"; path = "Pods/Target Support Files/Pods-VideoGenerator/Pods-VideoGenerator.debug.xcconfig"; sourceTree = "<group>"; };
+		9980CEDD1F0B41D3002FE996 /* HJImagesToVideo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HJImagesToVideo.h; sourceTree = "<group>"; };
+		9980CEDE1F0B41D3002FE996 /* HJImagesToVideo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HJImagesToVideo.m; sourceTree = "<group>"; };
 		999D9C591F0A40A200C71699 /* VideoGenerator.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = VideoGenerator.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		999D9C5D1F0A40A200C71699 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		999D9C5F1F0A40A200C71699 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -100,6 +103,15 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		9980CEDC1F0B41D3002FE996 /* HJImagesToVideo */ = {
+			isa = PBXGroup;
+			children = (
+				9980CEDD1F0B41D3002FE996 /* HJImagesToVideo.h */,
+				9980CEDE1F0B41D3002FE996 /* HJImagesToVideo.m */,
+			);
+			path = HJImagesToVideo;
+			sourceTree = "<group>";
+		};
 		999D9C501F0A40A200C71699 = {
 			isa = PBXGroup;
 			children = (
@@ -125,6 +137,7 @@
 		999D9C5B1F0A40A200C71699 /* VideoGenerator */ = {
 			isa = PBXGroup;
 			children = (
+				9980CEDC1F0B41D3002FE996 /* HJImagesToVideo */,
 				999D9C5F1F0A40A200C71699 /* AppDelegate.h */,
 				999D9C601F0A40A200C71699 /* AppDelegate.m */,
 				999D9C621F0A40A200C71699 /* ViewController.h */,
@@ -350,6 +363,7 @@
 			files = (
 				999D9C641F0A40A200C71699 /* ViewController.m in Sources */,
 				999D9C611F0A40A200C71699 /* AppDelegate.m in Sources */,
+				9980CEDF1F0B41D3002FE996 /* HJImagesToVideo.m in Sources */,
 				999D9C5E1F0A40A200C71699 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -586,6 +600,7 @@
 				999D9C881F0A40A300C71699 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		999D9C891F0A40A300C71699 /* Build configuration list for PBXNativeTarget "VideoGeneratorTests" */ = {
 			isa = XCConfigurationList;
@@ -594,6 +609,7 @@
 				999D9C8B1F0A40A300C71699 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		999D9C8C1F0A40A300C71699 /* Build configuration list for PBXNativeTarget "VideoGeneratorUITests" */ = {
 			isa = XCConfigurationList;
@@ -602,6 +618,7 @@
 				999D9C8E1F0A40A300C71699 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

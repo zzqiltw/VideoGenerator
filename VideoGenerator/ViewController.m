@@ -7,6 +7,8 @@
 //
 
 #import "ViewController.h"
+#import "ZLPhotoActionSheet.h"
+#import "HJImagesToVideo.h"
 
 @interface ViewController ()
 
@@ -20,10 +22,30 @@
 }
 
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+- (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event
+{
+    ZLPhotoActionSheet *actionSheet = [[ZLPhotoActionSheet alloc] init];
+    
+    actionSheet.sender = self;
+    
+    [actionSheet setSelectImageBlock:^(NSArray<UIImage *> * _Nonnull images, NSArray<PHAsset *> * _Nonnull assets, BOOL isOriginal) {
+        [self generateVideoWithImages:images];
+    }];
+    
+    [actionSheet showPhotoLibrary];
 }
+
+- (void)generateVideoWithImages:(NSArray<UIImage *> *)images
+{
+    NSString *path = [NSHomeDirectory() stringByAppendingPathComponent:
+                      [NSString stringWithFormat:@"Documents/temp.mp4"]];
+    [[NSFileManager defaultManager] removeItemAtPath:path error:NULL];
+    [HJImagesToVideo videoFromImages:images toPath:path withCallbackBlock:^(BOOL success) {
+        
+    }];
+}
+
+
 
 
 @end
