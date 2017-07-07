@@ -10,6 +10,7 @@
 #import "ZLPhotoActionSheet.h"
 #import "HJImagesToVideo.h"
 #import "ZQPhotoDurationModel.h"
+#import "ZQPhotoModelEditorViewController.h"
 
 @interface ViewController ()
 
@@ -21,10 +22,11 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"pick" style:UIBarButtonItemStylePlain target:self action:@selector(onPickPhoto:)];
 }
 
-
-- (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event
+- (void)onPickPhoto:(id)sender
 {
     ZLPhotoActionSheet *actionSheet = [[ZLPhotoActionSheet alloc] init];
     
@@ -39,8 +41,11 @@
                 [self.photoModels addObject:model];
             }
         }];
-
-        [self generateVideoWithImages:self.photoModels];
+        
+        ZQPhotoModelEditorViewController *controller = [ZQPhotoModelEditorViewController new];
+        controller.photoModels = self.photoModels;
+        [self.navigationController pushViewController:controller animated:YES];
+//        [self generateVideoWithImages:self.photoModels];
     }];
     
     [actionSheet showPhotoLibrary];
