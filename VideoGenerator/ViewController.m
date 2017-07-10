@@ -38,7 +38,7 @@
         
         [images enumerateObjectsUsingBlock:^(UIImage * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
             
-            ZQPhotoDurationModel *model = [ZQPhotoDurationModel photoDurationModelWithImage:obj duration:idx+1 ];
+            ZQPhotoDurationModel *model = [ZQPhotoDurationModel photoDurationModelWithImage:obj duration:10 / images.count ];
             if (model) {
                 [self.photoModels addObject:model];
             }
@@ -61,7 +61,7 @@
     NSString *path = [NSHomeDirectory() stringByAppendingPathComponent:
                       [NSString stringWithFormat:@"Documents/temp.mp4"]];
     [[NSFileManager defaultManager] removeItemAtPath:path error:NULL];
-    [[HJImagesToVideo new] videoFromImages:imageModels toPath:path withSize:CGSizeMake(200, 200) withFPS:1 animateTransitions:NO withCallbackBlock:^(BOOL success) {
+    [[HJImagesToVideo new] videoFromImages:imageModels toPath:path withSize:CGSizeMake([UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.width) withFPS:1 animateTransitions:NO withCallbackBlock:^(BOOL success) {
         dispatch_async(dispatch_get_global_queue(0, 0), ^{
             [[PHPhotoLibrary sharedPhotoLibrary] performChanges:^{
                 [PHAssetChangeRequest creationRequestForAssetFromVideoAtFileURL:[NSURL fileURLWithPath:path]];

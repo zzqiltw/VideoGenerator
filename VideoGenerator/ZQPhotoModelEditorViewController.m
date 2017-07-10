@@ -44,7 +44,7 @@
             UITextField *textField = [UITextField new];
             
             textField.borderStyle = UITextBorderStyleRoundedRect;
-            textField.keyboardType = UIKeyboardTypeNumberPad;
+            textField.keyboardType = UIKeyboardTypeNumbersAndPunctuation;
             textField.returnKeyType = UIReturnKeyDone;
             textField.leftView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 15, 28)];
             textField.leftViewMode = UITextFieldViewModeAlways;
@@ -70,6 +70,8 @@
 @interface ZQPhotoModelEditorViewController ()<UITableViewDelegate, UITableViewDataSource>
 
 @property (nonatomic, strong) UITableView *tableView;
+@property (nonatomic, strong) UIView *inputBar;
+@property (nonatomic, strong) UITextField *accessoryTextField;
 
 @end
 
@@ -99,6 +101,43 @@
         
         tableView;
     });
+    
+    self.inputBar = ({
+        UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, 48)];
+        
+        UITextField *textField = [UITextField new];
+        
+        textField.borderStyle = UITextBorderStyleRoundedRect;
+        textField.keyboardType = UIKeyboardTypeNumbersAndPunctuation;
+        textField.returnKeyType = UIReturnKeyDone;
+        textField.leftView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 15, 28)];
+        textField.leftViewMode = UITextFieldViewModeAlways;
+        textField.clearButtonMode = UITextFieldViewModeWhileEditing;
+        
+        [view addSubview:textField];
+        
+        self.accessoryTextField = textField;
+        
+        [textField mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.left.offset(20);
+            make.width.equalTo(@200);
+            make.centerY.offset(0);
+        }];
+        
+        UIButton *button = [UIButton new];
+        button.titleLabel.font = [UIFont systemFontOfSize:14];
+        [button addTarget:self action:@selector(onEdited:) forControlEvents:UIControlEventTouchUpInside];
+        [button setTitle:@"应用到选择项" forState:UIControlStateNormal];
+        [view addSubview:button];
+        
+        [button mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.left.equalTo(textField.mas_right).offset(20);
+            make.centerY.offset(0);
+        }];
+        
+        
+        view;
+    });
 }
 
 - (void)onChoose:(id)sender
@@ -120,7 +159,20 @@
         [self.tableView selectRowAtIndexPath:indexPath animated:YES scrollPosition:UITableViewScrollPositionBottom];
         self.photoModels[i].selected = YES;
     }
+}
 
+- (void)onEdited:(id)sender
+{
+    [self.view endEditing:YES];
+    [self.tableView setEditing:YES animated:NO];
+
+    for (NSInteger i = 0; i < self.photoModels.count; ++i) {
+        if (self.photoModels[i].selected) {
+            self.photoModels[i].duration = self.accessoryTextField.text.doubleValue;
+        }
+    }
+    
+    [self.tableView reloadData];
 }
 
 - (void)onCancelAll:(id)sender
@@ -159,6 +211,7 @@
     ZQPhotoDurationModel *model = self.photoModels[indexPath.row];
     
     cell.textField.text = [NSString stringWithFormat:@"%.2lf", model.duration];
+    cell.textField.inputAccessoryView = self.inputBar;
     
     cell.photoImageView.image = model.image;
     
