@@ -136,8 +136,14 @@
 
 - (void)onSure:(id)sender
 {
+    NSMutableArray *selectedModels = [NSMutableArray array];
+    [self.photoModels enumerateObjectsUsingBlock:^(ZQPhotoDurationModel * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        if (obj.selected) {
+            [selectedModels addObject:obj];
+        }
+    }];
     if ([self.delegate respondsToSelector:@selector(photoEditorDidFinishPick:photoModels:)]) {
-        [self.delegate photoEditorDidFinishPick:self photoModels:[self.photoModels copy]];
+        [self.delegate photoEditorDidFinishPick:self photoModels:[selectedModels copy]];
     }
 }
 
