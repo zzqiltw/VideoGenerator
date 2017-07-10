@@ -9,6 +9,7 @@
 #import "HJImagesToVideo.h"
 #import <UIKit/UIKit.h>
 
+
 CGSize const DefaultFrameSize                             = (CGSize){480, 320};
 
 NSInteger const DefaultFrameRate                          = 1;
@@ -177,6 +178,7 @@ BOOL const DefaultTransitionShouldAnimate = YES;
     AVAssetWriter *videoWriter = [[AVAssetWriter alloc] initWithURL:[NSURL fileURLWithPath:path]
                                                            fileType:AVFileTypeMPEG4
                                                               error:&error];
+    
     if (error) {
         if (callbackBlock) {
             callbackBlock(NO);
@@ -272,6 +274,8 @@ BOOL const DefaultTransitionShouldAnimate = YES;
                 
 				[videoWriter finishWritingWithCompletionHandler:^{
                     NSLog(@"Successfully closed video writer");
+                    
+                    
                     if (videoWriter.status == AVAssetWriterStatusCompleted) {
                         if (callbackBlock) {
                             callbackBlock(YES);

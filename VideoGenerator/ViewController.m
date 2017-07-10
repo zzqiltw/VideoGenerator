@@ -12,6 +12,8 @@
 #import "ZQPhotoDurationModel.h"
 #import "ZQPhotoModelEditorViewController.h"
 
+#import <Photos/PHPhotoLibrary.h>
+#import <Photos/PHAssetChangeRequest.h>
 @interface ViewController ()<ZQPhotoModelEditorViewControllerDelegate>
 
 @property (nonatomic, strong) NSMutableArray<ZQPhotoDurationModel *> *photoModels;
@@ -43,6 +45,7 @@
         }];
         
         ZQPhotoModelEditorViewController *controller = [ZQPhotoModelEditorViewController new];
+        controller.delegate = self;
         controller.photoModels = self.photoModels;
         [self.navigationController pushViewController:controller animated:YES];
 //        [self generateVideoWithImages:self.photoModels];
@@ -51,13 +54,20 @@
     [actionSheet showPhotoLibrary];
 }
 
+
+
 - (void)generateVideoWithImages:(NSArray<ZQPhotoDurationModel *> *)imageModels
 {
     NSString *path = [NSHomeDirectory() stringByAppendingPathComponent:
                       [NSString stringWithFormat:@"Documents/temp.mp4"]];
     [[NSFileManager defaultManager] removeItemAtPath:path error:NULL];
     [[HJImagesToVideo new] videoFromImages:imageModels toPath:path withSize:CGSizeMake(200, 200) withFPS:1 animateTransitions:NO withCallbackBlock:^(BOOL success) {
-        
+        dispatch_async(dispatch_get_global_queue(0, 0), ^{
+            [[PHPhotoLibrary sharedPhotoLibrary] performChanges:^{
+                [PHAssetChangeRequest creationRequestForAssetFromVideoAtFileURL:[NSURL fileURLWithPath:path]];
+            } completionHandler:^(BOOL success, NSError * _Nullable error) {
+            }];
+        });
     }];
 }
 
@@ -71,7 +81,7 @@
 
 - (void)photoEditorDidFinishPick:(ZQPhotoModelEditorViewController *)controller photoModels:(NSArray<ZQPhotoDurationModel *> *)photoModels
 {
-    
+    [self generateVideoWithImages:photoModels];
 }
 
 
