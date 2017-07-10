@@ -9,7 +9,17 @@
 #import <UIKit/UIKit.h>
 #import "ZQPhotoDurationModel.h"
 
+@class ZQPhotoModelEditorViewController;
+@protocol ZQPhotoModelEditorViewControllerDelegate <NSObject>
+
+@optional
+- (void)photoEditorDidFinishPick:(ZQPhotoModelEditorViewController *)controller photoModels:(NSArray<ZQPhotoDurationModel *> *)photoModels;
+
+@end
+
 @interface ZQPhotoModelEditorViewController : UIViewController
+
+@property (nonatomic, weak) id<ZQPhotoModelEditorViewControllerDelegate> delegate;
 
 @property (nonatomic, strong) NSMutableArray<ZQPhotoDurationModel *> *photoModels;
 

@@ -12,7 +12,7 @@
 #import "ZQPhotoDurationModel.h"
 #import "ZQPhotoModelEditorViewController.h"
 
-@interface ViewController ()
+@interface ViewController ()<ZQPhotoModelEditorViewControllerDelegate>
 
 @property (nonatomic, strong) NSMutableArray<ZQPhotoDurationModel *> *photoModels;
 
@@ -69,7 +69,10 @@
     return _photoModels;
 }
 
-
+- (void)photoEditorDidFinishPick:(ZQPhotoModelEditorViewController *)controller photoModels:(NSArray<ZQPhotoDurationModel *> *)photoModels
+{
+    
+}
 
 
 @end
