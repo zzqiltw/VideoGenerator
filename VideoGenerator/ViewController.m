@@ -14,6 +14,7 @@
 
 #import <Photos/PHPhotoLibrary.h>
 #import <Photos/PHAssetChangeRequest.h>
+#import <Photos/Photos.h>
 @interface ViewController ()<ZQPhotoModelEditorViewControllerDelegate>
 
 @property (nonatomic, strong) NSMutableArray<ZQPhotoDurationModel *> *photoModels;
@@ -38,8 +39,9 @@
         
         [images enumerateObjectsUsingBlock:^(UIImage * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
             
-            ZQPhotoDurationModel *model = [ZQPhotoDurationModel photoDurationModelWithImage:obj duration:10 / images.count ];
+            ZQPhotoDurationModel *model = [ZQPhotoDurationModel photoDurationModelWithImage:obj duration:10.f / images.count ];
             if (model) {
+                model.date = assets[idx].modificationDate;
                 [self.photoModels addObject:model];
             }
         }];
@@ -63,12 +65,27 @@
     [[NSFileManager defaultManager] removeItemAtPath:path error:NULL];
     [[HJImagesToVideo new] videoFromImages:imageModels toPath:path withSize:CGSizeMake([UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.width) withFPS:1 animateTransitions:NO withCallbackBlock:^(BOOL success) {
         dispatch_async(dispatch_get_global_queue(0, 0), ^{
-            [[PHPhotoLibrary sharedPhotoLibrary] performChanges:^{
-                [PHAssetChangeRequest creationRequestForAssetFromVideoAtFileURL:[NSURL fileURLWithPath:path]];
-            } completionHandler:^(BOOL success, NSError * _Nullable error) {
-            }];
+//            [[PHPhotoLibrary sharedPhotoLibrary] performChanges:^{
+//                [PHAssetChangeRequest creationRequestForAssetFromVideoAtFileURL:[NSURL fileURLWithPath:path]];
+//            } completionHandler:^(BOOL success, NSError * _Nullable error) {
+//            }];
+            [self saveVideoForPath:path];
         });
     }];
+}
+
+- (void)saveVideoForPath:(NSString *)videoPath
+{
+    if (UIVideoAtPathIsCompatibleWithSavedPhotosAlbum(videoPath)) {
+        //保存视频到相簿
+        UISaveVideoAtPathToSavedPhotosAlbum(videoPath, self,
+                                            @selector(video:didFinishSavingWithError:contextInfo:), nil);
+    }
+}
+
+- (void)video:(NSString *)videoPath didFinishSavingWithError:(NSError *)error
+  contextInfo:(void *)contextInfo {
+    NSLog(@"保存视频完成");
 }
 
 - (NSMutableArray<ZQPhotoDurationModel *> *)photoModels

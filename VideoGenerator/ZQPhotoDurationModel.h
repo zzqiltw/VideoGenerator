@@ -12,7 +12,7 @@
 
 @property (nonatomic, strong) UIImage *image;
 @property (nonatomic, assign) CGFloat duration; // 持续时间
-
+@property (nonatomic, strong) NSDate *date; // 拍摄时间
 @property (nonatomic, assign) BOOL selected;
 
 + (instancetype)photoDurationModelWithImage:(UIImage *)image duration:(CGFloat)duration;
