@@ -216,6 +216,7 @@ BOOL const DefaultTransitionShouldAnimate = YES;
     {
 		if(writerInput.readyForMoreMediaData){
 //            presentTime = CMTimeMake(value, fps);
+#warning todo 时间要是CGFloat
             presentTime = CMTimeMake([self videoDurationUntil:i], fps);
             
 			if (i >= [array count]) {
@@ -235,37 +236,37 @@ BOOL const DefaultTransitionShouldAnimate = YES;
                                                             withInput:writerInput];
                 NSAssert(appendSuccess, @"Failed to append");
                 
-                if (shouldAnimateTransitions && i + 1 < array.count) {
-
-                    //Create time each fade frame is displayed
-                    CMTime fadeTime = CMTimeMake(1, fps*TransitionFrameCount);
-            
-                    //Add a delay, causing the base image to have more show time before fade begins.
-                    for (int b = 0; b < FramesToWaitBeforeTransition; b++) {
-                        presentTime = CMTimeAdd(presentTime, fadeTime);
-                    }
-                    
-                    //Adjust fadeFrameCount so that the number and curve of the fade frames and their alpha stay consistant
-                    NSInteger framesToFadeCount = TransitionFrameCount - FramesToWaitBeforeTransition;
-                    
-                    //Apply fade frames
-                    for (double j = 1; j < framesToFadeCount; j++) {
-                        UIImage *arrayIImage = [array[i] image];
-                        buffer = [HJImagesToVideo crossFadeImage:[arrayIImage CGImage]
-                                                         toImage:[[array[i + 1] image] CGImage]
-                                                          atSize:CGSizeMake(480, 320)
-                                                       withAlpha:j/framesToFadeCount];
-                        
-                        BOOL appendSuccess = [HJImagesToVideo appendToAdapter:adaptor
-                                                                  pixelBuffer:buffer
-                                                                       atTime:presentTime
-                                                                    withInput:writerInput];
-                        presentTime = CMTimeAdd(presentTime, fadeTime);
-                        
-                        NSAssert(appendSuccess, @"Failed to append");
-                    }
-                }
-                
+//                if (shouldAnimateTransitions && i + 1 < array.count) {
+//
+//                    //Create time each fade frame is displayed
+////                    CMTime fadeTime = CMTimeMake(1, fps*TransitionFrameCount);
+//            
+//                    //Add a delay, causing the base image to have more show time before fade begins.
+////                    for (int b = 0; b < FramesToWaitBeforeTransition; b++) {
+////                        presentTime = CMTimeAdd(presentTime, fadeTime);
+////                    }
+//                    
+//                    //Adjust fadeFrameCount so that the number and curve of the fade frames and their alpha stay consistant
+//                    NSInteger framesToFadeCount = TransitionFrameCount - FramesToWaitBeforeTransition;
+//                    
+//                    //Apply fade frames
+//                    for (double j = 1; j < framesToFadeCount; j++) {
+//                        UIImage *arrayIImage = [array[i] image];
+//                        buffer = [HJImagesToVideo crossFadeImage:[arrayIImage CGImage]
+//                                                         toImage:[[array[i + 1] image] CGImage]
+//                                                          atSize:CGSizeMake(480, 320)
+//                                                       withAlpha:j/framesToFadeCount];
+//                        
+//                        BOOL appendSuccess = [HJImagesToVideo appendToAdapter:adaptor
+//                                                                  pixelBuffer:buffer
+//                                                                       atTime:presentTime
+//                                                                    withInput:writerInput];
+////                        presentTime = CMTimeAdd(presentTime, fadeTime);
+//                        
+//                        NSAssert(appendSuccess, @"Failed to append");
+//                    }
+//                }
+//                
                 i++;
 			} else {
 				

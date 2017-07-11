@@ -11,10 +11,9 @@
 #import "HJImagesToVideo.h"
 #import "ZQPhotoDurationModel.h"
 #import "ZQPhotoModelEditorViewController.h"
+#import <Photos/PHAsset.h>
+#import <Photos/PHAssetCreationRequest.h>
 
-#import <Photos/PHPhotoLibrary.h>
-#import <Photos/PHAssetChangeRequest.h>
-#import <Photos/Photos.h>
 @interface ViewController ()<ZQPhotoModelEditorViewControllerDelegate>
 
 @property (nonatomic, strong) NSMutableArray<ZQPhotoDurationModel *> *photoModels;
@@ -63,30 +62,24 @@
     NSString *path = [NSHomeDirectory() stringByAppendingPathComponent:
                       [NSString stringWithFormat:@"Documents/temp.mp4"]];
     [[NSFileManager defaultManager] removeItemAtPath:path error:NULL];
-    [[HJImagesToVideo new] videoFromImages:imageModels toPath:path withSize:CGSizeMake([UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.width) withFPS:1 animateTransitions:NO withCallbackBlock:^(BOOL success) {
+    [[HJImagesToVideo new] videoFromImages:imageModels toPath:path withSize:CGSizeMake(200, 200) withFPS:1 animateTransitions:NO withCallbackBlock:^(BOOL success) {
         dispatch_async(dispatch_get_global_queue(0, 0), ^{
-//            [[PHPhotoLibrary sharedPhotoLibrary] performChanges:^{
-//                [PHAssetChangeRequest creationRequestForAssetFromVideoAtFileURL:[NSURL fileURLWithPath:path]];
-//            } completionHandler:^(BOOL success, NSError * _Nullable error) {
-//            }];
+
             [self saveVideoForPath:path];
         });
     }];
 }
 
-- (void)saveVideoForPath:(NSString *)videoPath
+- (void)saveVideoForPath:(NSString *)path
 {
-    if (UIVideoAtPathIsCompatibleWithSavedPhotosAlbum(videoPath)) {
-        //保存视频到相簿
-        UISaveVideoAtPathToSavedPhotosAlbum(videoPath, self,
-                                            @selector(video:didFinishSavingWithError:contextInfo:), nil);
-    }
+
+    [[PHPhotoLibrary sharedPhotoLibrary] performChanges:^{
+        [PHAssetChangeRequest creationRequestForAssetFromVideoAtFileURL:[NSURL fileURLWithPath:path]];
+    } completionHandler:^(BOOL success, NSError * _Nullable error) {
+        NSLog(@"保存视频完成");
+    }];
 }
 
-- (void)video:(NSString *)videoPath didFinishSavingWithError:(NSError *)error
-  contextInfo:(void *)contextInfo {
-    NSLog(@"保存视频完成");
-}
 
 - (NSMutableArray<ZQPhotoDurationModel *> *)photoModels
 {
